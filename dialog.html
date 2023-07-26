@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <style>
+      input[type=color] {
+        height: 30px;
+        width: 50px;
+        padding: 0;
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <label for="column">Column:</label>
+      <input type="text" id="column" name="column">
+    </div>
+    <div>
+      <label for="phrases">Phrases:</label>
+      <input type="text" id="phrases" name="phrases">
+    </div>
+    <div>
+      <label for="color">Color:</label>
+      <input type="color" id="color" name="color">
+    </div>
+    <div>
+      <label for="action">Action:</label>
+      <select id="action" name="action">
+        <option value="highlight">Highlight</option>
+        <option value="delete">Delete</option>
+      </select>
+    </div>
+    <div>
+      <button onclick="submitForm()">Submit</button>
+    </div>
+    <script>
+      function submitForm() {
+        var column = document.getElementById('column').value;
+        var phrases = document.getElementById('phrases').value;
+        var color = document.getElementById('color').value;
+        var action = document.getElementById('action').value;
+        google.script.run.withSuccessHandler(function() {
+          google.script.host.close();
+        }).processForm({column: column, phrases: phrases, color: color, action: action});
+      }
+    </script>
+  </body>
+</html>
